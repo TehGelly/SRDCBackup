@@ -100,6 +100,7 @@ def srdc_backup(username, image):
         game.pop('assets')
         game.pop('weblink')
         game.pop('links')
+        game.pop('romhack')
         for category in game['categories']['data']:
             category.pop('links')
             category.pop('weblink')
@@ -112,6 +113,8 @@ def srdc_backup(username, image):
             region.pop('links')
         for variable in game['variables']['data']:
             variable.pop('links')
+            variable['values'].pop('_note')
+            variable['values'].pop('choices')
 
     backup_file = "{}_backup.json".format(udata['id'])
     print("Packaging and writing JSON to {}...".format(backup_file))
